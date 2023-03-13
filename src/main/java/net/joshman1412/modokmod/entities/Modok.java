@@ -44,7 +44,7 @@ public class Modok extends Animal
 
     public static AttributeSupplier.Builder getModokAttributes()
     {
-        return Mob.createMobAttributes().add(ForgeMod.ENTITY_GRAVITY.get(), 0.5f).add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.FLYING_SPEED, 0.7246D);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 25.0D).add(Attributes.FLYING_SPEED, 0.6D).add(Attributes.MOVEMENT_SPEED, 0.6D);
     }
 }
 

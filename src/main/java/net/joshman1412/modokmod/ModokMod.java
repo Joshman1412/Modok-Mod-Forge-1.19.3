@@ -1,6 +1,7 @@
 package net.joshman1412.modokmod;
 
 import com.mojang.logging.LogUtils;
+import net.joshman1412.modokmod.init.EntityInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -26,12 +27,9 @@ public class ModokMod
 
     public ModokMod()
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(this::commonSetup);
-        MinecraftForge.EVENT_BUS.register(this);
-
-        modEventBus.addListener(this::addCreative);
+        EntityInit.ENTITIES.register(bus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)

@@ -17,7 +17,8 @@ private static final ResourceLocation TEXTURE = new ResourceLocation(ModokMod.MO
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Modok entity) {
+    public ResourceLocation getTextureLocation(Modok entity)
+    {
         return TEXTURE;
     }
 }

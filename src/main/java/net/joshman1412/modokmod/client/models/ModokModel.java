@@ -14,7 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ModokModel extends EntityModel<Modok>
 {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(ModokMod.MOD_ID, "modok"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(ModokMod.MOD_ID, "modok_entity"), "main");
+
+
 	private final ModelPart Body;
 	private final ModelPart Saddle;
 
@@ -45,7 +47,7 @@ public class ModokModel extends EntityModel<Modok>
 
 		LeftLegGroup.addOrReplaceChild("LeftLegJoint_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-31.0F, -12.0F, -3.0F, 3.0F, 15.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.0F, 21.0F, -1.0F, -1.5753F, -0.6618F, 1.5997F));
 
-		 LeftLegGroup.addOrReplaceChild("LeftLeg_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-28.0F, 13.0F, -2.0F, 4.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.0F, 21.0F, -1.0F, -1.6128F, -0.2405F, 1.6263F));
+		LeftLegGroup.addOrReplaceChild("LeftLeg_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-28.0F, 13.0F, -2.0F, 4.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.0F, 21.0F, -1.0F, -1.6128F, -0.2405F, 1.6263F));
 
 		PartDefinition RightLegGroup = Body.addOrReplaceChild("RightLegGroup", CubeListBuilder.create(), PartPose.offset(-15.0F, 0.0F, 0.0F));
 
@@ -62,7 +64,6 @@ public class ModokModel extends EntityModel<Modok>
 
 	@Override
 	public void setupAnim(Modok entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
 	}
 
 	@Override

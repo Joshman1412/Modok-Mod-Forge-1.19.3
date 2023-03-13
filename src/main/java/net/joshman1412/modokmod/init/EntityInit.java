@@ -12,5 +12,5 @@ public class EntityInit
 {
 public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ModokMod.MOD_ID);
 
-public static final RegistryObject<EntityType<Modok>> MODOK = ENTITIES.register("modok", () -> EntityType.Builder.of(Modok::new, MobCategory.CREATURE).build(ModokMod.MOD_ID + ":modok"));
+public static final RegistryObject<EntityType<Modok>> MODOK = ENTITIES.register("modok", () -> EntityType.Builder.of(Modok::new, MobCategory.CREATURE).sized(2.5f, 2.7f).build(ModokMod.MOD_ID + ":modok"));
 }
