@@ -19,45 +19,22 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(ModokMod.MOD_ID)
-public class ModokMod {
-    // Define mod id in a common place for everything to reference
+public class ModokMod
+{
     public static final String MOD_ID = "modokmod";
-    // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public ModokMod() {
+    public ModokMod()
+    {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         EntityInit.ENTITIES.register(bus);
         Iteminit.ITEMS.register(bus);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
+    private void commonSetup(final FMLCommonSetupEvent event)
+    {
 
-    }
-
-    private void addCreative(CreativeModeTabEvent.BuildContents event) {
-
-    }
-
-    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-        }
-
-        public static final CreativeModeTab TAB = new CreativeModeTab() {
-            @Override
-            public ItemStack makeIcon() {
-                return null;
-            }
-        };
     }
 }
-
