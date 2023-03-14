@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "oEo",
+    "oWo",
+    "ooo"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:redstone_block"
+    },
+    "o": {
+      "item": "minecraft:gold_block"
+    },
+    "E": {
+      "item": "minecraft:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "modokmod:modok_fragment",
+    "count": 1
+  }
+}
