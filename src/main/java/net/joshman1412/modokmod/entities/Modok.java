@@ -19,27 +19,6 @@ public class Modok extends TamableAnimal {
         super(type, level);
     }
 
-
-    public InteractionResult mobInteract(Player p_30713_, InteractionHand p_30714_) {
-        boolean flag = this.isTamed() && p_30713_.isSecondaryUseActive();
-        if (!this.isVehicle() && !flag) {
-            ItemStack itemstack = p_30713_.getItemInHand(p_30714_);
-            if (!itemstack.isEmpty()) {
-                if (this.isFood(itemstack)) {
-                    return this.fedFood(p_30713_, itemstack);
-                }
-
-                if (!this.isTamed()) {
-                    this.makeMad();
-                    return InteractionResult.sidedSuccess(this.level.isClientSide);
-                }
-            }
-
-            return super.mobInteract(p_30713_, p_30714_);
-        } else {
-            return super.mobInteract(p_30713_, p_30714_);
-        }
-    }
                 @Override
                 protected void registerGoals ()
                 {
