@@ -1,5 +1,5 @@
 
-package net.mcreator.modok.network;
+package net.joshman1412.modokmod.networking;
 
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -10,9 +10,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.FriendlyByteBuf;
 
-import net.mcreator.modok.procedures.DownOnKeyReleasedProcedure;
-import net.mcreator.modok.procedures.DownOnKeyPressedProcedure;
-import net.mcreator.modok.ModokMod;
+import net.joshman1412.modokmod.procedures.DownOnKeyReleasedProcedure;
+import net.joshman1412.modokmod.procedures.DownOnKeyPressedProcedure;
+import net.joshman1412.modokmod.ModokMod;
 
 import java.util.function.Supplier;
 
