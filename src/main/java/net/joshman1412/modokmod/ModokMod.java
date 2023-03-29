@@ -1,6 +1,7 @@
 package net.joshman1412.modokmod;
 
 import com.mojang.logging.LogUtils;
+import net.joshman1412.modokmod.entities.Modok;
 import net.joshman1412.modokmod.init.EntityInit;
 import net.joshman1412.modokmod.init.Iteminit;
 import net.minecraft.client.Minecraft;
@@ -29,7 +30,7 @@ public class ModokMod
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        EntityInit.ENTITIES.register(bus);
+        EntityInit.REGISTRY.register(bus);
         Iteminit.ITEMS.register(bus);
     }
 

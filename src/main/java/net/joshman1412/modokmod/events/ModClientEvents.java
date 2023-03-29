@@ -2,6 +2,7 @@ package net.joshman1412.modokmod.events;
 
 import net.joshman1412.modokmod.ModokMod;
 import net.joshman1412.modokmod.client.models.ModokModel;
+import net.joshman1412.modokmod.client.models.Modok_Aggresive;
 import net.joshman1412.modokmod.client.renderer.ModokEntityRenderer;
 import net.joshman1412.modokmod.entities.Modok;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,6 +29,6 @@ public class ModClientEvents
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(ModokModel.LAYER_LOCATION, ModokModel::createBodyLayer);
+        event.registerLayerDefinition(Modok_Aggresive.LAYER_LOCATION, Modok_Aggresive::createBodyLayer);
     }
 }
