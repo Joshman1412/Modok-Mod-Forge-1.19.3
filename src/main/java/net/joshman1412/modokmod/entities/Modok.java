@@ -3,6 +3,7 @@ package net.joshman1412.modokmod.entities;
 
 import net.joshman1412.modokmod.init.EntityInit;
 import net.joshman1412.modokmod.init.Iteminit;
+import net.joshman1412.modokmod.procedures.ModokOnEntityTickUpdateProcedure;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SpawnEggItem;
@@ -115,6 +116,13 @@ public class Modok extends PathfinderMob {
         super.mobInteract(sourceentity, hand);
         sourceentity.startRiding(this);
         return retval;
+    }
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        ModokOnEntityTickUpdateProcedure.execute(
+
+        );
     }
 
     @Override
