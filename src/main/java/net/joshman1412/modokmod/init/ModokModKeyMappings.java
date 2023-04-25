@@ -17,7 +17,7 @@ import net.joshman1412.modokmod.ModokMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 public class ModokModKeyMappings {
-	public static final KeyMapping DOWN = new KeyMapping("key.modok.down", GLFW.GLFW_KEY_LEFT_CONTROL, "key.categories.gameplay") {
+	public static final KeyMapping DOWN = new KeyMapping("Modok Fly Down", GLFW.GLFW_KEY_LEFT_CONTROL, "key.categories.gameplay") {
 		private boolean isDownOld = false;
 
 		@Override
@@ -35,7 +35,7 @@ public class ModokModKeyMappings {
 			isDownOld = isDown;
 		}
 	};
-	public static final KeyMapping UP = new KeyMapping("key.modok.up", GLFW.GLFW_KEY_SPACE, "key.categories.gameplay") {
+	public static final KeyMapping UP = new KeyMapping("Modok Fly Up", GLFW.GLFW_KEY_SPACE, "key.categories.gameplay") {
 		private boolean isDownOld = false;
 
 		@Override

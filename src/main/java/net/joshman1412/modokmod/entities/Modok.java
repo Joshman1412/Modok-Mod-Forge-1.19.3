@@ -117,19 +117,13 @@ public class Modok extends PathfinderMob {
         sourceentity.startRiding(this);
         return retval;
     }
-    @Override
-    public void baseTick() {
-        super.baseTick();
-        ModokOnEntityTickUpdateProcedure.execute(
-
-        );
-    }
 
     @Override
     public void baseTick() {
         super.baseTick();
         ModokOnEntityTickUpdateProcedure.execute(this);
     }
+
 
     @Override
     public void travel(Vec3 dir) {
