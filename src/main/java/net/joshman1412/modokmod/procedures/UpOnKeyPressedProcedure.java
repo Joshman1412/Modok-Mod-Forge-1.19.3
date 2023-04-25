@@ -8,7 +8,7 @@ public class UpOnKeyPressedProcedure {
 		if (entity == null)
 			return;
 		if ((entity.getVehicle()) instanceof Modok == true) {
-			entity.getPersistentData().putDouble("VerticalMovement", 1);
+			(entity.getVehicle()).getPersistentData().putDouble("VerticalMovement", 1);
 		}
 	}
 }

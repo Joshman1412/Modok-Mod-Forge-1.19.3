@@ -5,20 +5,23 @@
 package net.joshman1412.modokmod.init;
 
 import org.lwjgl.glfw.GLFW;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.api.distmarker.Dist;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.KeyMapping;
+
 import net.joshman1412.modokmod.networking.UpMessage;
 import net.joshman1412.modokmod.networking.DownMessage;
 import net.joshman1412.modokmod.ModokMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 public class ModokModKeyMappings {
-	public static final KeyMapping DOWN = new KeyMapping("key.modok.down", GLFW.GLFW_KEY_LEFT_CONTROL, "key.categories.misc") {
+	public static final KeyMapping DOWN = new KeyMapping("key.modok.down", GLFW.GLFW_KEY_LEFT_CONTROL, "key.categories.gameplay") {
 		private boolean isDownOld = false;
 
 		@Override
@@ -36,7 +39,7 @@ public class ModokModKeyMappings {
 			isDownOld = isDown;
 		}
 	};
-	public static final KeyMapping UP = new KeyMapping("key.modok.up", GLFW.GLFW_KEY_SPACE, "key.categories.misc") {
+	public static final KeyMapping UP = new KeyMapping("key.modok.up", GLFW.GLFW_KEY_SPACE, "key.categories.gameplay") {
 		private boolean isDownOld = false;
 
 		@Override

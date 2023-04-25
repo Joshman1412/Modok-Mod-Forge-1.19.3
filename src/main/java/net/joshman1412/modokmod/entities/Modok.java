@@ -3,6 +3,7 @@ package net.joshman1412.modokmod.entities;
 
 import net.joshman1412.modokmod.init.EntityInit;
 import net.joshman1412.modokmod.init.Iteminit;
+import net.joshman1412.modokmod.procedures.ModokOnEntityTickUpdateProcedure;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SpawnEggItem;
@@ -118,6 +119,12 @@ public class Modok extends PathfinderMob {
     }
 
     @Override
+    public void baseTick() {
+        super.baseTick();
+        ModokOnEntityTickUpdateProcedure.execute(this);
+    }
+
+    @Override
     public void travel(Vec3 dir) {
         Entity entity = this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0);
         if (this.isVehicle()) {
@@ -169,13 +176,13 @@ public class Modok extends PathfinderMob {
 
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.5);
-        builder = builder.add(Attributes.MAX_HEALTH, 26);
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.7);
+        builder = builder.add(Attributes.MAX_HEALTH, 120);
         builder = builder.add(Attributes.ARMOR, 2.5);
         builder = builder.add(Attributes.ATTACK_DAMAGE, 12);
         builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1);
-        builder = builder.add(Attributes.FLYING_SPEED, 0.5);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.5);
+        builder = builder.add(Attributes.FLYING_SPEED, 0.7);
         return builder;
     }
 }

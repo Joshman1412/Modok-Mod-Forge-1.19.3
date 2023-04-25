@@ -7,8 +7,8 @@ public class DownOnKeyPressedProcedure {
 	public static void execute(Entity entity) {
 		if (entity == null)
 			return;
-		if (entity instanceof Modok == true) {
-			entity.getPersistentData().putDouble("VerticalMovement", (-1));
+		if ((entity.getVehicle()) instanceof Modok == true) {
+			(entity.getVehicle()).getPersistentData().putDouble("VerticalMovement", (-1));
 		}
 	}
 }

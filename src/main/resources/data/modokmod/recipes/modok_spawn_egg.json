@@ -3,7 +3,7 @@
   "pattern": [
     "EEE",
     "oWo",
-    "WWW"
+    "WHW"
   ],
   "key": {
     "W": {
@@ -14,6 +14,9 @@
     },
     "E": {
       "item": "minecraft:ender_eye"
+    },
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
     }
   },
   "result": {
