@@ -1,7 +1,3 @@
-
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package net.joshman1412.modokmod.init;
 
 import org.lwjgl.glfw.GLFW;

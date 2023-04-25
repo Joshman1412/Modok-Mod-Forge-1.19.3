@@ -1,7 +1,7 @@
 package net.joshman1412.modokmod.procedures;
 
-import net.joshman1412.modokmod.entities.Modok;
 import net.minecraft.world.entity.Entity;
+import net.joshman1412.modokmod.entities.Modok;
 
 public class DownOnKeyPressedProcedure {
 	public static void execute(Entity entity) {

@@ -1,4 +1,3 @@
-
 package net.joshman1412.modokmod.networking;
 
 import net.minecraftforge.network.NetworkEvent;
