@@ -1,22 +1,18 @@
 package net.joshman1412.modokmod.entities;
 
 
-import net.joshman1412.modokmod.init.EntityInit;
-import net.joshman1412.modokmod.init.Iteminit;
-import net.joshman1412.modokmod.procedures.ModokOnEntityTickUpdateProcedure;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
 
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -27,6 +23,7 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.Mob;
@@ -36,25 +33,30 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.Difficulty;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.core.BlockPos;
 
-import static net.joshman1412.modokmod.init.Iteminit.ITEMS;
-import static net.joshman1412.modokmod.init.Iteminit.MODOK_FRAGMENT;
-
+import net.joshman1412.modokmod.procedures.ModokOnEntityTickUpdateProcedure;
+import net.joshman1412.modokmod.init.EntityInit;
 
 public class Modok extends PathfinderMob {
+
+    private float animationSpeed;
+    public float animationPosition;
+    public float animationSpeedOld;
+    public float flyingSpeed;
+
     public Modok(PlayMessages.SpawnEntity packet, Level world) {
         this(EntityInit.MODOK.get(), world);
     }
 
     public Modok(EntityType<Modok> type, Level world) {
         super(type, world);
-        xpReward = 10;
+        xpReward = 15;
         setNoAi(false);
-        setPersistenceRequired();
         this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
@@ -87,12 +89,6 @@ public class Modok extends PathfinderMob {
     public MobType getMobType() {
         return MobType.UNDEFINED;
     }
-
-    @Override
-    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-        return false;
-    }
-
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
@@ -132,6 +128,7 @@ public class Modok extends PathfinderMob {
             this.yRotO = this.getYRot();
             this.setXRot(entity.getXRot() * 0.5F);
             this.setRot(this.getYRot(), this.getXRot());
+            this.flyingSpeed = this.getSpeed() * 0.15F;
             this.yBodyRot = entity.getYRot();
             this.yHeadRot = entity.getYRot();
             this.maxUpStep = 1.0F;
@@ -141,6 +138,15 @@ public class Modok extends PathfinderMob {
                 float strafe = passenger.xxa;
                 super.travel(new Vec3(strafe, 0, forward));
             }
+            this.animationSpeedOld = this.animationSpeed;
+            double d1 = this.getX() - this.xo;
+            double d0 = this.getZ() - this.zo;
+            float f1 = (float) Math.sqrt(d1 * d1 + d0 * d0) * 4;
+            if (f1 > 1.0F)
+                f1 = 1.0F;
+            this.animationSpeed += (f1 - this.animationSpeed) * 0.4F;
+            this.animationPosition += this.animationSpeed;
+            return;
         }
         this.maxUpStep = 0.5F;
         super.travel(dir);
@@ -161,17 +167,18 @@ public class Modok extends PathfinderMob {
     }
 
     public static void init() {
+        SpawnPlacements.register(EntityInit.MODOK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 1.5);
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 2.5);
         builder = builder.add(Attributes.MAX_HEALTH, 120);
-        builder = builder.add(Attributes.ARMOR, 2.5);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 54);
+        builder = builder.add(Attributes.ARMOR, 0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 12);
         builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1);
-        builder = builder.add(Attributes.FLYING_SPEED, 1.5);
+        builder = builder.add(Attributes.FLYING_SPEED, 2.5);
         return builder;
     }
 }
