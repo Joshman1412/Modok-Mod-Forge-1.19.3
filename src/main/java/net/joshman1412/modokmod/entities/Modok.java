@@ -3,6 +3,7 @@ package net.joshman1412.modokmod.entities;
 
 import net.joshman1412.modokmod.init.EntityInit;
 import net.joshman1412.modokmod.init.Iteminit;
+import net.joshman1412.modokmod.procedures.ModokOnEntityTickUpdateProcedure;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SpawnEggItem;
@@ -118,6 +119,12 @@ public class Modok extends PathfinderMob {
     }
 
     @Override
+    public void baseTick() {
+        super.baseTick();
+        ModokOnEntityTickUpdateProcedure.execute(this);
+    }
+
+    @Override
     public void travel(Vec3 dir) {
         Entity entity = this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0);
         if (this.isVehicle()) {
@@ -125,7 +132,6 @@ public class Modok extends PathfinderMob {
             this.yRotO = this.getYRot();
             this.setXRot(entity.getXRot() * 0.5F);
             this.setRot(this.getYRot(), this.getXRot());
-            this.flyingSpeed = this.getSpeed() * 0.15F;
             this.yBodyRot = entity.getYRot();
             this.yHeadRot = entity.getYRot();
             this.maxUpStep = 1.0F;
@@ -135,18 +141,8 @@ public class Modok extends PathfinderMob {
                 float strafe = passenger.xxa;
                 super.travel(new Vec3(strafe, 0, forward));
             }
-            this.animationSpeedOld = this.animationSpeed;
-            double d1 = this.getX() - this.xo;
-            double d0 = this.getZ() - this.zo;
-            float f1 = (float) Math.sqrt(d1 * d1 + d0 * d0) * 4;
-            if (f1 > 1.0F)
-                f1 = 1.0F;
-            this.animationSpeed += (f1 - this.animationSpeed) * 0.4F;
-            this.animationPosition += this.animationSpeed;
-            return;
         }
         this.maxUpStep = 0.5F;
-        this.flyingSpeed = 0.02F;
         super.travel(dir);
     }
 
@@ -169,13 +165,13 @@ public class Modok extends PathfinderMob {
 
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.5);
-        builder = builder.add(Attributes.MAX_HEALTH, 26);
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 1.5);
+        builder = builder.add(Attributes.MAX_HEALTH, 120);
         builder = builder.add(Attributes.ARMOR, 2.5);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 12);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 54);
         builder = builder.add(Attributes.FOLLOW_RANGE, 16);
         builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1);
-        builder = builder.add(Attributes.FLYING_SPEED, 0.5);
+        builder = builder.add(Attributes.FLYING_SPEED, 1.5);
         return builder;
     }
 }
