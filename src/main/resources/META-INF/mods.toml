@@ -45,14 +45,11 @@ description='''The Modok Mod Adds Modok From The Marvel Universe to Minecraft.
 He is rideable and can fly Forwards, Backwards, Left, Right, Up and Down.
 He goes Forward, Backwards, Left and Right with WASD and he goes Up and Down with space and left control.
 These keybinds can be changed in the Gameplay section of the keybinds menu.
-
-
-
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.modokmod]] #optional
     # the modid of the dependency
-    modId="modokmod" #mandatory
+    modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
@@ -63,7 +60,7 @@ These keybinds can be changed in the Gameplay section of the keybinds menu.
     side="BOTH"
 # Here's another dependency
 [[dependencies.modokmod]]
-    modId="modokmod"
+    modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.19.3,1.20)"

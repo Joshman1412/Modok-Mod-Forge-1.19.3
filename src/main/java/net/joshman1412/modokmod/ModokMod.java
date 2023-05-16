@@ -1,5 +1,8 @@
 package net.joshman1412.modokmod;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -28,7 +31,7 @@ import java.util.Collection;
 import java.util.ArrayList;
 import java.util.AbstractMap;
 
-@Mod("modokmod")
+@Mod(ModokMod.MOD_ID)
 public class ModokMod {
     public static final Logger LOGGER = LogManager.getLogger(ModokMod.class);
     public static final String MOD_ID = "modokmod";
@@ -40,6 +43,10 @@ public class ModokMod {
 
         Iteminit.ITEMS.register(bus);
         EntityInit.REGISTRY.register(bus);
+
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
 
     }
 
@@ -69,6 +76,13 @@ public class ModokMod {
             });
             actions.forEach(e -> e.getKey().run());
             workQueue.removeAll(actions);
+        }
+    }
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+
         }
     }
 }
